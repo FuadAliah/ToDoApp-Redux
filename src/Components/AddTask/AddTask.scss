@@ -1,0 +1,25 @@
+.add-task {
+  margin: 140px auto;
+  width: 1500px;
+  .form {
+    display: flex;
+    justify-content: space-between;
+
+    .form-control {
+      width: 44%;
+      height: 60px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+      border: 0;
+    }
+
+    .btn-primary {
+      padding: 10px 40px;
+    }
+  }
+  #date-error {
+    padding: 7px 0;
+    margin-left: 677px;
+    color: tomato;
+    font-weight: 600;
+  }
+}

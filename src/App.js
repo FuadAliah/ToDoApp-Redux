@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import { connect } from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import AddTask from "./Components/AddTask/AddTask";
+import Task from "./Components/Task/Task";
+import { ADD_TASK_INFO, REMOVE_TASK_INFO } from "./Actions/Actions";
+import "./App.scss";
+
+class App extends Component {
+  render() {
+    const { tasks } = this.props;
+    return (
+      <div className="App">
+        <AddTask ADD_TASK_INFO={this.props.ADD_TASK_INFO} />
+        <div className="task-list">
+          {tasks
+            ? tasks.map((task) => (
+                <Task key={task.id} id={task.id} name={task.name} date={task.date} REMOVE_TASK_INFO={this.props.REMOVE_TASK_INFO} />
+              ))
+            : null}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default connect(
+  (state) => {
+    return {
+      tasks: state,
+    };
+  },
+  { ADD_TASK_INFO, REMOVE_TASK_INFO }
+)(App);
